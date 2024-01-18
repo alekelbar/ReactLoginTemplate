@@ -1,15 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom"
 import { routes } from "./routes";
 import { useAppSelector } from "../redux/hooks.redux";
+import { PublicLayout } from "../shared/layout/PublicLayout";
 
 export const PublicGuard = () => {
-  const { userSession } = useAppSelector(state => state.loginReducer);
+  const { apiCredentials } = useAppSelector(state => state.loginReducer);
 
-  if (userSession) {
-    return <Navigate to={routes.HOME} />
+  if (apiCredentials) {
+    return <Navigate to={routes.DASHBOARD} />
   }
 
   return (
-    <Outlet />
+    <PublicLayout>
+      <Outlet />
+    </PublicLayout>
   )
 }

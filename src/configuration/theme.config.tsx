@@ -1,12 +1,11 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 // const THEME_CUSTOM = {
 
-// };
 
 export const theme = createTheme({
   palette: {
-    mode: 'dark'
-  }
+    mode: 'dark',
+  },
 });
 
 

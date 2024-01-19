@@ -9,4 +9,5 @@ export enum routes {
   STOCK = "stock",
   TRANSACTION = "transaction",
   USERS = "users",
+  PRODUCTS = "products"
 }

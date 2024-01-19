@@ -2,6 +2,6 @@ import { NewFeature } from "../../shared/components/NewFeature"
 
 export const UsersPage = () => {
   return (
-    <NewFeature />
+    <NewFeature moduleName="gestión de usuarios" />
   )
 }

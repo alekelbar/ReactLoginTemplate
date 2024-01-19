@@ -3,6 +3,6 @@ import { NewFeature } from "../../shared/components/NewFeature"
 
 export const CheckOutPage = () => {
   return (
-    <NewFeature />
+    <NewFeature moduleName="administración de cajas" />
   )
 }

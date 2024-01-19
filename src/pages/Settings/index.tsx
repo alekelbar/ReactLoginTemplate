@@ -2,6 +2,6 @@ import { NewFeature } from "../../shared/components/NewFeature"
 
 export const SettingsPage = () => {
   return (
-    <NewFeature />
+    <NewFeature moduleName="configuración de aplicación" />
   )
 }

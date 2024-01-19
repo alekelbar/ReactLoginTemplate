@@ -13,6 +13,7 @@ import { TransactionsPage } from "../pages/Transactions"
 import { UsersPage } from "../pages/Users"
 import { PagesGuard } from "../utilities/PagesGuard"
 import { EUserRoles } from "../utilities/user.roles"
+import { ProductManagmentPage } from "../pages/ProductManagment"
 
 
 export const AppRouter: React.FC = () => {
@@ -56,6 +57,12 @@ export const AppRouter: React.FC = () => {
           <Route path={routes.USERS} element={
             <PagesGuard validRoles={[EUserRoles.ADMIN]}>
               <UsersPage />
+            </PagesGuard>
+          } />
+
+          <Route path={routes.PRODUCTS} element={
+            <PagesGuard validRoles={[EUserRoles.ADMIN]}>
+              <ProductManagmentPage />
             </PagesGuard>
           } />
 

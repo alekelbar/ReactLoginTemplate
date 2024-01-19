@@ -28,9 +28,11 @@ import {
   Inventory,
   Paid,
   SupervisedUserCircle,
+  ProductionQuantityLimits,
 } from '@mui/icons-material';
 import { unsetLoginCredentials } from '../../redux/Slices/auth/login.slice';
 import { EUserRoles } from '../../utilities/user.roles';
+import { NotShowIf } from '../../utilities/NotShowIf';
 
 const drawerWidth = 240;
 
@@ -159,77 +161,105 @@ export const CustomDrawer: React.FC<DrawerProps> = ({
         <Divider />
         <List>
 
-          <LinkRouter to={routes.DASHBOARD} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-            <ListItem disablePadding>
-              <ListItemButton disabled={!userHasRole([EUserRoles.ADMIN])}>
-                <ListItemIcon>
-                  {/* icono... */}
-                  <Dashboard />
-                </ListItemIcon>
-                <ListItemText primary={"Dashboard"} />
-              </ListItemButton>
-            </ListItem>
-          </LinkRouter>
+          <NotShowIf notShowIf={!userHasRole([EUserRoles.ADMIN])}>
+            <LinkRouter to={routes.DASHBOARD} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {/* icono... */}
+                    <Dashboard />
+                  </ListItemIcon>
+                  <ListItemText primary={"Dashboard"} />
+                </ListItemButton>
+              </ListItem>
+            </LinkRouter>
+          </NotShowIf>
 
-          <LinkRouter to={routes.CHECKOUT} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-            <ListItem disablePadding>
-              <ListItemButton disabled={!userHasRole([EUserRoles.ADMIN])}>
-                <ListItemIcon>
-                  {/* icono... */}
-                  <PointOfSale />
-                </ListItemIcon>
-                <ListItemText primary={"Cajas"} />
-              </ListItemButton>
-            </ListItem>
-          </LinkRouter>
+          <NotShowIf notShowIf={!userHasRole([EUserRoles.ADMIN])}>
+            <LinkRouter to={routes.PRODUCTS} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <ListItem disablePadding>
+                <ListItemButton disabled={!userHasRole([EUserRoles.ADMIN])}>
+                  <ListItemIcon>
+                    {/* icono... */}
+                    <ProductionQuantityLimits />
+                  </ListItemIcon>
+                  <ListItemText primary={"Productos"} />
+                </ListItemButton>
+              </ListItem>
+            </LinkRouter>
+          </NotShowIf>
 
-          <LinkRouter to={routes.SALES} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-            <ListItem disablePadding>
-              <ListItemButton disabled={!userHasRole([EUserRoles.ADMIN, EUserRoles.SELLER])}>
-                <ListItemIcon>
-                  {/* icono... */}
-                  <ShoppingBag />
-                </ListItemIcon>
-                <ListItemText primary={"Ventas"} />
-              </ListItemButton>
-            </ListItem>
-          </LinkRouter>
+          <NotShowIf notShowIf={!userHasRole([EUserRoles.ADMIN])}>
+            <LinkRouter to={routes.CHECKOUT} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {/* icono... */}
+                    <PointOfSale />
+                  </ListItemIcon>
+                  <ListItemText primary={"Cajas"} />
+                </ListItemButton>
+              </ListItem>
+            </LinkRouter>
+          </NotShowIf>
 
-          <LinkRouter to={routes.STOCK} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-            <ListItem disablePadding>
-              <ListItemButton disabled={!userHasRole([EUserRoles.ADMIN])}>
-                <ListItemIcon>
-                  {/* icono... */}
-                  <Inventory />
-                </ListItemIcon>
-                <ListItemText primary={"Stock"} />
-              </ListItemButton>
-            </ListItem>
-          </LinkRouter>
+          <NotShowIf notShowIf={!userHasRole([EUserRoles.ADMIN, EUserRoles.SELLER])}>
+            <LinkRouter to={routes.SALES} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {/* icono... */}
+                    <ShoppingBag />
+                  </ListItemIcon>
+                  <ListItemText primary={"Ventas"} />
+                </ListItemButton>
+              </ListItem>
+            </LinkRouter>
+          </NotShowIf>
 
-          <LinkRouter to={routes.TRANSACTION} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-            <ListItem disablePadding>
-              <ListItemButton disabled={!userHasRole([EUserRoles.ADMIN])}>
-                <ListItemIcon>
-                  {/* icono... */}
-                  <Paid />
-                </ListItemIcon>
-                <ListItemText primary={"Transacciones"} />
-              </ListItemButton>
-            </ListItem>
-          </LinkRouter>
+          <NotShowIf notShowIf={!userHasRole([EUserRoles.ADMIN])}>
+            <LinkRouter to={routes.STOCK} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {/* icono... */}
+                    <Inventory />
+                  </ListItemIcon>
+                  <ListItemText primary={"Stock"} />
+                </ListItemButton>
+              </ListItem>
+            </LinkRouter>
+          </NotShowIf>
 
-          <LinkRouter to={routes.USERS} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-            <ListItem disablePadding>
-              <ListItemButton disabled={!userHasRole([EUserRoles.ADMIN])}>
-                <ListItemIcon>
-                  {/* icono... */}
-                  <SupervisedUserCircle />
-                </ListItemIcon>
-                <ListItemText primary={"Usuarios"} />
-              </ListItemButton>
-            </ListItem>
-          </LinkRouter>
+
+          <NotShowIf notShowIf={!userHasRole([EUserRoles.ADMIN])}>
+            <LinkRouter to={routes.TRANSACTION} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {/* icono... */}
+                    <Paid />
+                  </ListItemIcon>
+                  <ListItemText primary={"Transacciones"} />
+                </ListItemButton>
+              </ListItem>
+            </LinkRouter>
+          </NotShowIf>
+
+
+          <NotShowIf notShowIf={!userHasRole([EUserRoles.ADMIN])}>
+            <LinkRouter to={routes.USERS} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {/* icono... */}
+                    <SupervisedUserCircle />
+                  </ListItemIcon>
+                  <ListItemText primary={"Usuarios"} />
+                </ListItemButton>
+              </ListItem>
+            </LinkRouter>
+          </NotShowIf>
 
         </List>
 

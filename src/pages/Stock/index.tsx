@@ -2,6 +2,6 @@ import { NewFeature } from "../../shared/components/NewFeature"
 
 export const StockPage = () => {
   return (
-    <NewFeature />
+    <NewFeature moduleName="stock de productos" />
   )
 }
